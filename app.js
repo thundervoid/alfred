@@ -23,15 +23,20 @@ request.get('http://peoplearenice.blogspot.com/p/compliment-list.html', function
 });
 
 var shutup = {
-    
-    '13878728': false, //TEAM
-    
+    '7771805': false, //Yippees
+    '11248555': false, //Faith Group
+    '12530073': false, //Mission Impossible
+    '10059220': false, //Roomies
+    '12124767': false, //North PA guys
+    '7510782': false //Family
 };
 
 var shutupClock = {};
 var count = 0;
 
 app.use(function (req, res, next) {
+    res.send();
+
     if (req.body.name === 'Alfred') {
         return next();
     }
@@ -40,7 +45,7 @@ app.use(function (req, res, next) {
         url: 'https://api.groupme.com/v3/bots/post',
         method: 'POST',
         form: {
-            bot_id: 'fc40e0809542dbc6ae939e1ca3',
+            bot_id: 'eeaab94daaef6eff88e1b3b68d',
             text: JSON.stringify({
                 created_at: req.body.created_at,
                 group_id: req.body.group_id,
@@ -58,7 +63,6 @@ app.use(function (req, res, next) {
 });
 
 app.post('/', function (req, res, next) {
-    if (!req.body.text) return next();
     req.body.text = S(req.body.text).collapseWhitespace().s;
 
     if (req.body.name === 'Alfred' || (shutup[req.body.group_id] && !req.body.text.match(/^alfred[.!?]?$/i))) {
@@ -177,15 +181,6 @@ app.post('/', function (req, res, next) {
         req.reply = say.charAt(0).toUpperCase() + say.substring(1);
         return next();
     }
-    else if (req.body.text.match(/^alfred(,)? spam .*$/i)) {
-        if (req.body.sender_id !== '6454202') return next();
-
-        var spam = req.body.text.split(req.body.text.match(/\bspam /i)[0])[1].trim();
-        req.reply = [];
-        for (var i = 0; i < 20; i++)
-            req.reply[i] = spam.charAt(0).toUpperCase() + spam.substring(1);
-        return next();
-    }
     else if (req.body.text.match(/^alfred(,)? tell (us |me )?a joke[.!?]?$/i)) {
         req.reply = _.shuffle(joke)[0];
         return next();
@@ -230,10 +225,6 @@ app.post('/', function (req, res, next) {
         if (!(count++ % 5)) req.reply = 'What a splendid idea! Count me in! Oh wait, I\'m not real.';
         return next();
     }
-    else if (req.body.text.match(/\bhow (long|often)\b/i)) {
-        req.reply = 'All day, nigga.';
-        return next();
-    }
     else if (req.body.text.match(/^right(,)? alfred(\?)?/i)) {
         req.reply = _.shuffle(reply.right)[0];
         return next();
@@ -268,12 +259,7 @@ app.post('/', function (req, res, next) {
 });
 
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    if (!req.reply) {
-        res.send();
-        return next();
-    } else if (req.body.group_id === 'test') res.send(req.reply);
-    else res.send();
+    if (!req.reply) return next();
 
     var options = {
         url: 'https://api.groupme.com/v3/bots/post',
@@ -281,7 +267,15 @@ app.use(function (req, res, next) {
         form: {}
     };
 
-    
+    switch (req.body.group_id) {
+        case '7771805': options.form.bot_id = '23d0b4561b9693e82424f9be63'; break; //Yippees
+        case '10059220': options.form.bot_id = '8db834f2d43673052c39a713a2'; break; //Roomies
+        case '12530073': options.form.bot_id = '8299fb952d31c64f04994f1545'; break; //Mission Impossible
+        case '12124767': options.form.bot_id = '3375c7ff57b4a2a64f9d05a1db'; break; //North PA Guys
+        case '7510782': options.form.bot_id = 'dff632a96e9dc15450def517b2'; break; //Family
+        default: options.form.bot_id = 'eeaab94daaef6eff88e1b3b68d'; //Faith Group
+    }
+
     if (_.isArray(req.reply)) {
         _.each(req.reply, function (element, index) {
             setTimeout(function () {
