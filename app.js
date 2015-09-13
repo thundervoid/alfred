@@ -29,6 +29,7 @@ var shutup = {
     '10059220': false, //Roomies
     '12124767': false, //North PA guys
     '7510782': false //Family
+    '13878728': false //team
 };
 
 var shutupClock = {};
@@ -45,7 +46,7 @@ app.use(function (req, res, next) {
         url: 'https://api.groupme.com/v3/bots/post',
         method: 'POST',
         form: {
-            bot_id: 'eeaab94daaef6eff88e1b3b68d',
+            bot_id: 'fc40e0809542dbc6ae939e1ca3',
             text: JSON.stringify({
                 created_at: req.body.created_at,
                 group_id: req.body.group_id,
@@ -273,7 +274,8 @@ app.use(function (req, res, next) {
         case '12530073': options.form.bot_id = '8299fb952d31c64f04994f1545'; break; //Mission Impossible
         case '12124767': options.form.bot_id = '3375c7ff57b4a2a64f9d05a1db'; break; //North PA Guys
         case '7510782': options.form.bot_id = 'dff632a96e9dc15450def517b2'; break; //Family
-        default: options.form.bot_id = 'eeaab94daaef6eff88e1b3b68d'; //Faith Group
+        case '13878728': options.form.bot_id = 'fc40e0809542dbc6ae939e1ca3'; break; //Family
+        default: options.form.bot_id = 'fc40e0809542dbc6ae939e1ca3'; //team
     }
 
     if (_.isArray(req.reply)) {
