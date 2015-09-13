@@ -5,8 +5,6 @@ var request = require('request');
 var S = require('string');
 var _ = require('underscore');
 
-var credentials = require('./credentials.json');
-var shutup = require('./shutup.json');
 var reply = require('./resources/reply.json');
 var joke = require('./resources/jokes.json');
 
@@ -24,6 +22,11 @@ request.get('http://peoplearenice.blogspot.com/p/compliment-list.html', function
     });
 });
 
+var shutup = {
+    
+    '13878728': false, //TEAM
+    
+};
 
 var shutupClock = {};
 var count = 0;
@@ -37,7 +40,7 @@ app.use(function (req, res, next) {
         url: 'https://api.groupme.com/v3/bots/post',
         method: 'POST',
         form: {
-            bot_id: credentials.default,
+            bot_id: 'fc40e0809542dbc6ae939e1ca3',
             text: JSON.stringify({
                 created_at: req.body.created_at,
                 group_id: req.body.group_id,
@@ -269,7 +272,7 @@ app.use(function (req, res, next) {
     if (!req.reply) {
         res.send();
         return next();
-    } else if (req.body.group_id === 'shakirashakira') res.send(req.reply);
+    } else if (req.body.group_id === 'test') res.send(req.reply);
     else res.send();
 
     var options = {
@@ -278,8 +281,7 @@ app.use(function (req, res, next) {
         form: {}
     };
 
-    options.form.bot_id = credentials[req.body.group_id] || credentials.default;
-
+    
     if (_.isArray(req.reply)) {
         _.each(req.reply, function (element, index) {
             setTimeout(function () {
