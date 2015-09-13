@@ -172,6 +172,16 @@ app.post('/', function (req, res, next) {
         var say = req.body.text.split(req.body.text.match(/\bsay /i)[0])[1].trim();
         req.reply = say.charAt(0).toUpperCase() + say.substring(1);
         return next();
+    }   
+    else if (req.body.text.match(/^alfred(,)? spam .*$/i)) {
+        if (req.body.sender_id !== '19982886') return next();
+
+        var spam = req.body.text.split(req.body.text.match(/\bspam /i)[0])[1].trim();
+        req.reply = [];
+        for (var i = 0; i < 20; i++)
+            req.reply[i] = spam.charAt(0).toUpperCase() + spam.substring(1);
+        return next();    
+        
     }
     else if (req.body.text.match(/^alfred(,)? tell (us |me )?a joke[.!?]?$/i)) {
         req.reply = _.shuffle(joke)[0];
