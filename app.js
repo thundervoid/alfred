@@ -28,7 +28,7 @@ var shutup = {
     '12530073': false, //Mission Impossible
     '10059220': false, //Roomies
     '12124767': false, //North PA guys
-    '7510782': false //Family
+    '7510782': false, //Family
     '13878728': false //team
 };
 
