@@ -69,7 +69,7 @@ app.post('/', function (req, res, next) {
     }
 
     else if (req.body.text.match(/alfred(,)? pug me/i)) {
-         if (req.body.sender_id !== '19982886') return next();
+         if (req.body.sender_id !== '19980886') return next();
         request.get('http://pugme.herokuapp.com/random', function (err, r, b) {
             if (err) return next (err);
 
