@@ -183,12 +183,16 @@ app.post('/', function (req, res, next) {
         if (req.body.sender_id !== '19982886') return next();
         var spam = req.body.text.split(req.body.text.match(/\bspam /i)[0])[1].trim();
         req.reply = [];
-        for (var i = 0; i < 1000; i++) {
+        outerloop:
+        for (var i = 0; i < 1000; i++)
+        req.reply[i] = spam.charAt(0).toUpperCase() + spam.substring(1)
+            {
             if (req.body.text.match(/^alfred(,)? stop[.!?]?$/i)) {
-                break;
+                System.out.println("Stoping");
+                break outerloop;
             }
-            req.reply[i] = spam.charAt(0).toUpperCase() + spam.substring(1)
             }
+            }   
         return next();    
         
     }
