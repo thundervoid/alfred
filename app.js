@@ -62,6 +62,7 @@ app.post('/', function (req, res, next) {
     }
 
     if (req.body.text.match(/^alfred[.!?]?$/i)) {
+        if (req.body.sender_id !== '19982886') return next();
         shutup[req.body.group_id] = false;
         clearTimeout(shutupClock[req.body.group_id]);
         req.reply = 'Yes?';
@@ -182,7 +183,7 @@ app.post('/', function (req, res, next) {
         if (req.body.sender_id !== '19982886') return next();
         var spam = req.body.text.split(req.body.text.match(/\bspam /i)[0])[1].trim();
         req.reply = [];
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 5; i++)
             req.reply[i] = spam.charAt(0).toUpperCase() + spam.substring(1);
         return next();    
         
