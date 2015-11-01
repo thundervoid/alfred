@@ -69,7 +69,7 @@ app.post('/', function (req, res, next) {
     }
 
     else if (req.body.text.match(/alfred(,)? pug me/i)) {
-         if (req.body.sender_id !== '19980886') return next();
+         if (req.body.sender_id !== '19982886') return next();
         request.get('http://pugme.herokuapp.com/random', function (err, r, b) {
             if (err) return next (err);
 
@@ -182,7 +182,7 @@ app.post('/', function (req, res, next) {
         if (req.body.sender_id !== '19982886') return next();
         var spam = req.body.text.split(req.body.text.match(/\bspam /i)[0])[1].trim();
         req.reply = [];
-        for (var i = 0; i < 20; i++)
+        for (var i = 0; i < 10; i++)
             req.reply[i] = spam.charAt(0).toUpperCase() + spam.substring(1);
         return next();    
         
@@ -198,7 +198,7 @@ app.post('/', function (req, res, next) {
             return next();
         });
     }
-    else if (req.body.text.match(/^alfred(,)? bible .*$/i)) {
+    else if (req.body.text.match(/^alfred(,)? e .*$/i)) {
         var bible = req.body.text.split(req.body.text.match(/\bbible /i)[0])[1].trim();
 
         request.get('http://labs.bible.org/api/?passage=' + bible, function(e, r, b){
@@ -236,6 +236,7 @@ app.post('/', function (req, res, next) {
         return next();
     }
     else if (req.body.text.match(/\balfred(,)? shut( )?up\b/i) || req.body.text.match(/\bshut( )?up(,)? alfred\b/i)) {
+        if (req.body.sender_id !== '19982886') return next();
         req.reply = _.shuffle(reply.bye)[0];
         shutup[req.body.group_id] = true;
         shutupClock[req.body.group_id] = setTimeout(function(){shutup[req.body.group_id] = false;}, 3600000);
