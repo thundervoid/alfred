@@ -187,7 +187,7 @@ app.post('/', function (req, res, next) {
         req.reply[i] = spam.charAt(0).toUpperCase() + spam.substring(1);
             {
             if (req.body.text.match(/^alfred(,)? stop[.!?]?$/i)) {
-                System.out.println("okay")
+                break;
             }
             }
         return next();    
