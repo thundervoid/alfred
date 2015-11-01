@@ -168,6 +168,10 @@ app.post('/', function (req, res, next) {
         req.reply = _.shuffle(reply.dtf)[0];
         return next();
     }
+    else if (req.body.text.match(/^alfred(,)? pics[.!?]?$/i)) {
+        req.reply = _.shuffle(reply.pics)[0];
+        return next();
+    }
     else if (req.body.text.match(/^alfred(,)? say .*$/i)) {
         var say = req.body.text.split(req.body.text.match(/\bsay /i)[0])[1].trim();
         req.reply = say.charAt(0).toUpperCase() + say.substring(1);
