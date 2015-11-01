@@ -189,7 +189,9 @@ app.post('/', function (req, res, next) {
             if (req.body.text.match(/^alfred(,)? stop[.!?]?$/i)) {
                 break;
             }
+            break;
             }
+            break;
         return next();    
         
     }
