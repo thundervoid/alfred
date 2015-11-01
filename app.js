@@ -186,7 +186,7 @@ app.post('/', function (req, res, next) {
         for (var i = 0; i < 1000; i++)
             req.reply[i] = spam.charAt(0).toUpperCase() + spam.substring(1) {
             if (req.body.text.match(/^alfred(,)? stop[.!?]?$/i)) {
-                break
+                break;
             }
             }
         return next();    
