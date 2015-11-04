@@ -258,12 +258,8 @@ app.post('/', function (req, res, next) {
     }
     else if (req.body.text.match(/alfred(,)? cat me/i)) {
          if (req.body.sender_id !== '19982886') return next();
-        request.get('http://thecatapi.com/api/images/get?format=src&type=gif', function (err, r, b) {
-            if (err) return next (err);
-
-            req.reply = JSON.parse(b).cat;
-            return next();
-        });
+        req.reply = 'http://thecatapi.com/api/images/get?format=src&type=gif';
+        return next();
     }
 
     else if (req.body.text.match(/(hi|hello|hey|greetings)(,)? alfred[\.!\?]?/i)) {
