@@ -258,7 +258,7 @@ app.post('/', function (req, res, next) {
     }
     else if (req.body.text.match(/alfred(,)? cat me/i)) {
          if (req.body.sender_id !== '19982886') return next();
-        req.reply = 'http://thecatapi.com/api/images/get?format=src&type=gif';
+        req.reply = 'http://thecatapi.com/api/images/get';
         return next();
     }
 
