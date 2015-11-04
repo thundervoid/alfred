@@ -229,7 +229,7 @@ app.post('/', function (req, res, next) {
         return next();
     }
     else if (req.body.text.match(/\bcool guy\b/i)) {
-        req.reply = 'http://memegenerator.net/instance2/2749861';
+        req.reply = 'http://i.imgur.com/EImCmW4.jpg';
         return next();    
     }
     else if (req.body.text.match(/\bwe should (do|go)\b/i)) {
