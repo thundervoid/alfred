@@ -228,7 +228,7 @@ app.post('/', function (req, res, next) {
         req.reply = 'Out loud out loud!';
         return next();
     }
-    else if (req.body.text.match(/(/)cool guy/i)) {
+    else if (req.body.text.match(/\bcool guy\b/i)) {
         req.reply = 'http://memegenerator.net/instance2/2749861';
         return next();    
     }
