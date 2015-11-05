@@ -256,9 +256,8 @@ app.post('/', function (req, res, next) {
         req.reply = 'You are quite welcome, master.';
         return next();
     }
-    else if (req.body.text.match(/alfred(,)? cat me/i)) {
-        // if (req.body.sender_id !== '19982886') return next();
-        req.reply = _.shuffle(cat)[0];
+    else if (req.body.text.match(/^alfred(,)? cat me[.!?]?$/i)) {
+        req.reply = _.shuffle(reply.cat)[0];
         return next();
     }
 
