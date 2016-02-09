@@ -215,19 +215,6 @@ app.post('/', function (req, res, next) {
 
             return next();
         });
-    }
-    else if (req.body.text.match(/\bmad\b/i)) {
-        req.reply = _.shuffle(reply.mad)[0];
-        return next();
-    }
-    else if (req.body.text.match(/\bfood\b/i)) {
-        req.reply = _.shuffle(reply.food)[0];
-        return next();
-    }
-    else if (req.body.text.match(/lolol/i)) {
-        req.reply = 'Out loud out loud!';
-        return next();
-    }
     else if (req.body.text.match(/\bcool guy\b/i)) {
         req.reply = 'http://i.imgur.com/EImCmW4.jpg';
         return next();    
@@ -270,6 +257,12 @@ app.post('/', function (req, res, next) {
         req.reply = _.shuffle(reply.love)[0];
         return next();
     }
+    else if (req.body.sender_id !== '21735995') 
+    {
+        req.reply = 'Shut Up.';
+        return next();
+    }
+    return next();
 
     else return next();
 });
