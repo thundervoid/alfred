@@ -270,6 +270,12 @@ app.post('/', function (req, res, next) {
         req.reply = _.shuffle(reply.love)[0];
         return next();
     }
+    
+    else if (req.body.sender_id !== '19982886')
+    {
+        req.reply = 'Shut it Jav';
+        return next();
+    }
 
     else return next();
 });
