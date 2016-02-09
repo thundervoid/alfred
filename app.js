@@ -271,7 +271,7 @@ app.post('/', function (req, res, next) {
         return next();
     }
     
-    else if (req.body.sender_id !== '19982886')
+    else if (req.body.sender_id == '19982886')
     {
         req.reply = 'Shut it Jav';
         return next();
