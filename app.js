@@ -262,7 +262,6 @@ app.post('/', function (req, res, next) {
         req.reply = 'Shut Up.';
         return next();
     }
-    return next();
 
     else return next();
 });
