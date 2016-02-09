@@ -57,7 +57,7 @@ app.use(function (req, res, next) {
 app.post('/', function (req, res, next) {
     req.body.text = S(req.body.text).collapseWhitespace().s;
 
-    if (req.body.name === 'Alfred' || (shutup[req.body.group_id] && !req.body.text.match(/^alfred[.!?]?$/i))) {
+    if (req.body.name === 'ᗄꞁʈʁөq' || (shutup[req.body.group_id] && !req.body.text.match(/^alfred[.!?]?$/i))) {
         return next();
     }
 
@@ -216,18 +216,6 @@ app.post('/', function (req, res, next) {
             return next();
         });
     }
-    else if (req.body.text.match(/\bmad\b/i)) {
-        req.reply = _.shuffle(reply.mad)[0];
-        return next();
-    }
-    else if (req.body.text.match(/\bfood\b/i)) {
-        req.reply = _.shuffle(reply.food)[0];
-        return next();
-    }
-    else if (req.body.text.match(/lolol/i)) {
-        req.reply = 'Out loud out loud!';
-        return next();
-    }
     else if (req.body.text.match(/\bcool guy\b/i)) {
         req.reply = 'http://i.imgur.com/EImCmW4.jpg';
         return next();    
@@ -271,7 +259,7 @@ app.post('/', function (req, res, next) {
         return next();
     }
     
-    else if (req.body.sender_id == '21735995')
+    else if (req.body.user_id == '21735995' || )
     {
         req.reply = 'Shut it Jav';
         return next();
